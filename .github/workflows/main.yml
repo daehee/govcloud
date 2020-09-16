@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          token: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+
+      # Runs a single command using the runners shell
+      - name: Run update
+        run: |
+          ./run.sh
+
+      # Runs a set of commands using the runners shell
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ranges*
+          git commit -m "Update ranges" -a
+          git push "https://daehee:${{ secrets.GITHUB_PERSONAL_TOKEN }}@github.com/daehee/govcloud.git" HEAD:master --follow-tags
