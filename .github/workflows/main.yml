@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
         with:
-          token: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Runs a single command using the runners shell
       - name: Run update
@@ -24,4 +24,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add ranges*
           git commit -m "Update ranges" -a
-          git push "https://daehee:${{ secrets.GITHUB_PERSONAL_TOKEN }}@github.com/daehee/govcloud.git" HEAD:master --follow-tags
+          git push "https://daehee:${{ secrets.GITHUB_TOKEN }}@github.com/daehee/govcloud.git" HEAD:master --follow-tags
