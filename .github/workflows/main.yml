@@ -23,5 +23,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add ranges*
-          git commit -m "Update ranges" -a
-          git push "https://daehee:${{ secrets.GITHUB_TOKEN }}@github.com/daehee/govcloud.git" HEAD:master --follow-tags
+          git diff-index --quiet HEAD || git commit -m "Update ranges" -a && git push "https://daehee:${{ secrets.GITHUB_TOKEN }}@github.com/daehee/govcloud.git" HEAD:master --follow-tags
